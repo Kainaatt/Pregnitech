@@ -1,93 +1,132 @@
-# React + TypeScript + Vite
+PregniTech
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+PregniTech is an AI-based pregnancy guidance platform designed to assist expecting mothers from 1 to 9 months of pregnancy. The platform provides diet plans, mental health guidance, and partner tips through interactive AI chatbots embedded via iframes, hosted on Hugging Face Spaces using Gradio interfaces.
 
-Currently, two official plugins are available:
+The platform implements a Retrieval-Augmented Generation (RAG) approach, allowing the chatbots to retrieve relevant pregnancy guidance from preloaded textual data to provide more accurate, context-aware, and personalized responses.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Features
 
-## React Compiler
+Month-wise Pregnancy Chatbots: AI chatbots for each month of pregnancy (1–9 months).
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Diet & Nutrition Guidance: Suggests suitable meal plans for the mother.
 
-## Expanding the ESLint configuration
+Mental Health Support: Provides tips for mental well-being during pregnancy.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+Partner Guidance: Offers advice to partners to support the mother.
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+RAG-Powered Responses: Chatbots leverage RAG to give contextually relevant answers.
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+Customizable AI Response: Adjustable parameters such as max tokens, temperature, and top-p for fine-tuning chatbot outputs.
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Tech Stack
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+The project leverages a modern full-stack and AI ecosystem:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+Frontend:
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+React
 
-## Firebase Email/Password Authentication Setup
+TypeScript
 
-1. Enable Email/Password in Firebase Console → Authentication → Sign-in method.
-2. Add a `.env` file in the project root with your client config:
+Embedded Gradio chat interfaces via iframes
 
-```
-VITE_FIREBASE_API_KEY=your_api_key
-VITE_FIREBASE_AUTH_DOMAIN=your_auth_domain
-VITE_FIREBASE_PROJECT_ID=your_project_id
-VITE_FIREBASE_STORAGE_BUCKET=your_storage_bucket
-VITE_FIREBASE_MESSAGING_SENDER_ID=your_sender_id
-VITE_FIREBASE_APP_ID=your_app_id
-```
+Backend / AI:
 
-3. Start the dev server:
+Python
 
-```bash
-npm run dev
-```
+Gradio – for building interactive chat interfaces
+
+Hugging Face Inference API – for AI chat models (e.g., google/gemma-2-2b-it)
+
+Sentence Transformers – for text embeddings (all-MiniLM-L6-v2)
+
+FAISS – for similarity search and RAG retrieval
+
+Python standard libraries – for file handling and preprocessing
+
+RAG Implementation:
+
+Load month-specific pregnancy guidance text.
+
+Chunk text data for easier embedding.
+
+Embed chunks using SentenceTransformer.
+
+Store embeddings in FAISS index.
+
+Retrieve relevant chunks based on user queries.
+
+Augment system prompt with retrieved context for AI response.
+
+Project Structure
+PregniTech/
+│
+├─ frontend/               # React + TypeScript app
+│
+├─ backend/                # Python AI scripts (Gradio, RAG setup)
+│   ├─ pregnancy_month1.txt
+│   ├─ main.py
+│
+├─ README.md
+└─ requirements.txt        # Python dependencies
+
+Installation & Running
+
+Clone the repository:
+
+git clone https://github.com/Kainaatt/Pregnitech.git
+cd PregniTech
+
+
+Install Python dependencies:
+
+pip install -r requirements.txt
+
+
+Run the Gradio backend:
+
+python backend/main.py
+
+
+Start the frontend:
+
+cd frontend
+npm install
+npm start
+
+
+Access the app via your browser at http://localhost:3000.
+
+Note: Ensure you have a Hugging Face token for AI inference API integration.
+
+Team
+
+Hashir Ehtisham – AI Chatbots Developer / Computer Engineer
+
+Lameea Khan – Graphics Designer / Computer Engineer
+
+Kainat Ali – MERN Stack Developer / Software Engineer
+
+Learning & Implementation Highlights
+
+Integration of RAG with AI chat models for context-aware pregnancy guidance.
+
+Building interactive chat interfaces using Gradio in Python.
+
+Month-specific content management and AI prompt augmentation.
+
+Full-stack deployment using React + TypeScript and AI-powered backend.
+
+Future Improvements
+
+Expand chatbot knowledge base to include more detailed trimester-specific guidance.
+
+Add voice-based interaction for better accessibility.
+
+Integrate reminders and notifications for diet, medication, and appointments.
+
+Improve frontend UI/UX for mobile-first accessibility.
+
+License
+
+This project is open-source. Feel free to fork, modify, and contribute.
