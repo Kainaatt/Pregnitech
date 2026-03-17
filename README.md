@@ -45,7 +45,7 @@ The platform implements a **Retrieval-Augmented Generation (RAG)** approach, all
 ## Team Members
 
 - **Hashir Ehtisham** – AI Chatbots Developer / Computer Engineer  
-- **Lameea Khan** – Graphics Designer / Computer Engineer  
+- **Lameea Khan ** – Graphics Designer / Computer Engineer  
 - **Kainat Ali** – MERN Stack Developer / Software Engineer  
 
 ---
